@@ -121,10 +121,10 @@ function generateNormalData(mean, std, label) {
 
 export default function App() {
   const [teams, setTeams] = useState([
-    { label: "Red 1", number: "", auto: "S", tele: "S", end: 30 },
-    { label: "Red 2", number: "", auto: "s", tele: "s", end: 30 },
-    { label: "Blue 1", number: "", auto: "S", tele: "S", end: 30 },
-    { label: "Blue 2", number: "", auto: "s", tele: "s", end: 30 },
+    { label: "Red Team 1", number: "", auto: "S", tele: "S", end: 30 },
+    { label: "Red Team 2", number: "", auto: "s", tele: "s", end: 30 },
+    { label: "Blue Team 1", number: "", auto: "S", tele: "S", end: 30 },
+    { label: "Blue Team 2", number: "", auto: "s", tele: "s", end: 30 },
   ]);
   const [result, setResult] = useState(null);
   const [chartData, setChartData] = useState([]);
