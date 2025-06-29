@@ -121,12 +121,13 @@ function generateNormalData(mean, std, label) {
 
 export default function App() {
   const [teams, setTeams] = useState([
-    { label: "Red Team 1", number: "", auto: "S", tele: "S", end: 30 },
-    { label: "Red Team 2", number: "", auto: "s", tele: "s", end: 30 },
-    { label: "Blue Team 1", number: "", auto: "S", tele: "S", end: 30 },
-    { label: "Blue Team 2", number: "", auto: "s", tele: "s", end: 30 },
+    { label: "Red Alliance Team 1", number: "", auto: "S", tele: "S", end: 30 },
+    { label: "Red Alliance Team 2", number: "", auto: "s", tele: "s", end: 30 },
+    { label: "Blue Alliance Team 1", number: "", auto: "S", tele: "S", end: 30 },
+    { label: "Blue Alliance Team 2", number: "", auto: "s", tele: "s", end: 30 },
   ]);
   const [result, setResult] = useState(null);
+  const [blueResult, setBlueResult] = useState(null);
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -144,6 +145,7 @@ export default function App() {
   const calculate = async () => {
     setError(null);
     setResult(null);
+    setBlueResult(null);
     setChartData([]);
 
     // Validate inputs
@@ -191,6 +193,9 @@ export default function App() {
       setResult(
         `🔴 Red Alliance win probability: ${(winProb * 100).toFixed(2)}%`
       );
+      setBlueResult(
+        `🔵 Blue Alliance win probability: ${100-((winProb * 100).toFixed(2))}%`
+      )
 
       const redData = generateNormalData(
         stats[0][0] + stats[1][0],
@@ -270,7 +275,10 @@ export default function App() {
             <h2 className="text-xl font-bold mb-4">Prediction</h2>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {result ? (
-              <p className="text-2xl text-green-400 mb-4">{result}</p>
+              <>
+                <p className="text-2l text-green-400 mb-4">{result}</p>
+                <p className="text-2l text-green-400 mb-4">{blueResult}</p>
+              </>
             ) : (
               <p className="text-gray-400 mb-4">
                 Fill out team info and click calculate.
